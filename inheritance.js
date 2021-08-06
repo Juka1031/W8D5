@@ -1,5 +1,5 @@
 //Preferred way!
-Function.prototype.inherits = function (parentClass) {
+Function.prototype.inheritsForAssessment = function (parentClass) {
     let childClass = this;
     function Surrogate() {}
     Surrogate.prototype = parentClass.prototype;
@@ -7,6 +7,11 @@ Function.prototype.inherits = function (parentClass) {
     childClass.prototype.constructor = childClass; //overriding the child classes prototype so that it constructor points back to its original constructor
 };
 
+Function.prototype.inherits = function (parentClass) {
+  let childClass = this; 
+  childClass.prototype = Object.create(parentClass.prototype);
+  childClass.prototype.constructor = childClass;
+};
 
 function Animal(name) {
     this.name = name;
@@ -34,3 +39,5 @@ garfield.meow();
 
 // const noCat = new Animal("noCat");
 // noCat.meow();
+
+
